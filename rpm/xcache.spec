@@ -79,6 +79,15 @@ Obsoletes: stashcache-cache-server-auth < 1.0.0
 %postun -n stash-cache
 %systemd_postun_with_restart xrootd@stash-cache.service stash-cache-authfile.service stash-cache-authfile.timer xrootd@stash-cache-auth.service xrootd-renew-proxy.service xrootd-renew-proxy.timer
 
+########################################
+%package -n cms-xcache
+Summary: XCache config files for CMS
+
+#Requires: %{name}
+
+%description -n cms-xcache
+%{summary}
+
 %prep
 %setup -n %{name}-%{version} -q
 
@@ -142,6 +151,10 @@ mkdir -p %{buildroot}%{_sysconfdir}/grid-security/xrd
 %{_tmpfilesdir}/stash-cache.conf
 %attr(0755, xrootd, xrootd) %dir /run/stash-cache/
 %attr(0755, xrootd, xrootd) %dir /run/stash-cache-auth/
+
+%files -n cms-xcache
+%config(noreplace) %{_sysconfdir}/xrootd/xcache-cmsd.cfg
+%config(noreplace) %{_sysconfdir}/xrootd/xcache.cfg
 
 %changelog
 * Wed Jan 30 2019 Mátyás Selmeci <matyas@cs.wisc.edu> - 1.0.1-1
