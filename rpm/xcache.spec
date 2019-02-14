@@ -83,7 +83,7 @@ Obsoletes: stashcache-cache-server-auth < 1.0.0
 %package -n cms-xcache
 Summary: XCache config files for CMS
 
-#Requires: %{name}
+Requires: %{name}
 
 %description -n cms-xcache
 %{summary}
